@@ -1,0 +1,12 @@
+package com.project.todobackend.service;
+
+import com.project.todobackend.dto.UserDTO;
+
+public interface IUserService {
+
+    Boolean registerUser(UserDTO userDTO);
+
+    Boolean updateUsername(String oldUsername, String newUsername);
+
+    Boolean updatePassword(String username, String newPassword);
+}
