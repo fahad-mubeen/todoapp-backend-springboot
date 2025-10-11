@@ -1,5 +1,6 @@
 package com.project.todobackend.entity;
 
+import com.project.todobackend.enums.UserRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -24,6 +25,9 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     @NotBlank(message = "name is required")
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
 
     @OneToMany(
             mappedBy = "user"
