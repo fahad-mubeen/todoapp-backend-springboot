@@ -9,9 +9,9 @@ public interface ITodoService {
 
     TodoDTO addTodo(TodoDTO todoDTO, String username);
 
-    TodoDTO toggleTodo(Long id, String username);
+    TodoDTO toggleTodo(Long todoId, String username);
 
-    TodoDTO updateTodo(Long id, TodoDTO todoDTO, String username);
+    TodoDTO updateTodo(Long todoId, TodoDTO todoDTO, String username);
 
-    Boolean deleteTodo(Long id, String username);
+    Boolean deleteTodo(Long todoId, String username);
 }
