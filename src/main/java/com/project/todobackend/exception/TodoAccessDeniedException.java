@@ -1,7 +1,7 @@
 package com.project.todobackend.exception;
 
 public class TodoAccessDeniedException extends RuntimeException {
-    public TodoAccessDeniedException(String message) {
-        super(message);
+    public TodoAccessDeniedException(Long id) {
+        super("Access denied to todo with id: " + id);
     }
 }

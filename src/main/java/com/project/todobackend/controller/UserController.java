@@ -1,6 +1,5 @@
 package com.project.todobackend.controller;
 
-import com.project.todobackend.dto.UserDTO;
 import com.project.todobackend.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,18 +16,17 @@ public class UserController {
 
     private final IUserService userService;
 
-    @PutMapping()
-    public ResponseEntity<String> updateUsername(
+    @PutMapping("/updateUsername")
+    public ResponseEntity<Boolean> updateUsername(
             Authentication authentication,
-            @RequestBody UserDTO userDTO
+            @RequestBody String newUsername
     ) {
         String oldUsername = authentication.getName();
-        String newUsername = userDTO.getUsername();
-        String response = userService.updateUsername(oldUsername, newUsername);
+        Boolean response = userService.updateUsername(oldUsername, newUsername);
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping
+    @PutMapping("/updatePassword")
     public ResponseEntity<Boolean> updatePassword(
             Authentication authentication,
             String newPassword
