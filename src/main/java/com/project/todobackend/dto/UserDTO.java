@@ -13,7 +13,8 @@ import java.util.List;
 public class UserDTO {
     private Long id;
     private String username;
+    private String password;
     private String name;
-    private UserRole role;
+    private UserRole role = UserRole.USER;
     private List<TodoDTO> todos;
 }

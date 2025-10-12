@@ -19,3 +19,6 @@ spring:
 Server:
   port: ${PORT}
 
+Admin:
+  username: ${ADMIN_USERNAME}
+  password: ${ADMIN_PASSWORD}

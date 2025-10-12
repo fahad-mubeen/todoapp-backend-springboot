@@ -4,10 +4,7 @@ import com.project.todobackend.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
@@ -33,6 +30,12 @@ public class UserController {
     ) {
         String username = authentication.getName();
         Boolean response = userService.updatePassword(username, newPassword);
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Boolean> deleteUser(Authentication authentication) {
+        Boolean response = userService.deleteUser(authentication.getName());
         return ResponseEntity.ok(response);
     }
 }
