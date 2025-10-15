@@ -5,7 +5,11 @@ import com.project.todobackend.entity.User;
 import com.project.todobackend.exception.UsernameNotFoundException;
 import com.project.todobackend.mapper.UserMapper;
 import com.project.todobackend.repository.UserRepository;
+import com.project.todobackend.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +24,10 @@ public class UserService implements IUserService {
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
+
+    private final AuthenticationManager authenticationManager;
+
+    private final JwtUtil jwtUtil;
 
     @Override
     public Boolean registerUser(UserDTO userDTO) {
@@ -61,5 +69,22 @@ public class UserService implements IUserService {
         return users.stream()
                 .map(UserMapper::toUserDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public String login(UserDTO userDTO) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword())
+            );
+            if(authentication.isAuthenticated()) {
+                return jwtUtil.generateToken(userDTO.getUsername());
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Invalid Credentials");
+            return "Invalid Credentials";
+        }
+        return "Error while generating token";
     }
 }

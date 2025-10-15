@@ -7,6 +7,7 @@ import com.project.todobackend.enums.UserRole;
 import com.project.todobackend.repository.AdminRepository;
 import com.project.todobackend.repository.UserRepository;
 import com.project.todobackend.service.IUserService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -64,5 +65,10 @@ public class PublicController {
         userRepository.save(adminUser);
 
         return ResponseEntity.ok("Admin user created successfully.");
+    }
+
+    @GetMapping("/login")
+    public String login(UserDTO userDTO) {
+        return userService.login(userDTO);
     }
 }

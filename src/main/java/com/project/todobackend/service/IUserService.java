@@ -15,4 +15,6 @@ public interface IUserService {
     Boolean deleteUser(String username);
 
     List<UserDTO> listAllUsers();
+
+    String login(UserDTO userDTO);
 }
