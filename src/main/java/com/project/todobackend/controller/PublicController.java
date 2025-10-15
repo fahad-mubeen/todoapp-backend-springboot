@@ -68,7 +68,11 @@ public class PublicController {
     }
 
     @GetMapping("/login")
-    public String login(UserDTO userDTO) {
-        return userService.login(userDTO);
+    public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
+        String jwtToken = userService.login(userDTO);
+        if (jwtToken == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.ok(jwtToken);
     }
 }

@@ -1,5 +1,6 @@
 package com.project.todobackend.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -40,7 +41,7 @@ public class JwtUtil {
 
         long expirationTimeInMillis = System.currentTimeMillis()
                 + TimeUnit.HOURS.toMillis(0)
-                + TimeUnit.MINUTES.toMillis(10)
+                + TimeUnit.MINUTES.toMillis(100)
                 + TimeUnit.SECONDS.toMillis(0);
 
         return Jwts.builder()
@@ -52,5 +53,21 @@ public class JwtUtil {
                 .and()
                 .signWith(getKey())
                 .compact();
+    }
+
+    private Claims getClaims(String token) {
+        return Jwts.parser()
+                .verifyWith(getKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+
+    public String extractUsernameFromToken(String jwtToken) {
+        return getClaims(jwtToken).getSubject();
+    }
+
+    public boolean validateToken(String jwtToken) {
+        return getClaims(jwtToken).getExpiration().after(new Date());
     }
 }

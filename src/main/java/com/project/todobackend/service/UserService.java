@@ -74,6 +74,8 @@ public class UserService implements IUserService {
     @Override
     public String login(UserDTO userDTO) {
         try {
+            System.out.println(userDTO.getUsername());
+            System.out.println(userDTO.getPassword());
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword())
             );
@@ -83,8 +85,8 @@ public class UserService implements IUserService {
         }
         catch (Exception e) {
             System.out.println("Invalid Credentials");
-            return "Invalid Credentials";
+            return null;
         }
-        return "Error while generating token";
+        return null;
     }
 }
