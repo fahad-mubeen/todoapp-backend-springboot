@@ -10,6 +10,6 @@ import lombok.*;
 public class TodoDTO {
     private Long id;
     private String text;
-    private boolean isCompleted;
+    private boolean completed = false;
     private Long userId;
 }

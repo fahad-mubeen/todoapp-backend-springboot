@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/public")
 @RequiredArgsConstructor
+@CrossOrigin
 public class PublicController {
 
     private final IUserService userService;
@@ -67,7 +68,7 @@ public class PublicController {
         return ResponseEntity.ok("Admin user created successfully.");
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
         String jwtToken = userService.login(userDTO);
         if (jwtToken == null) {

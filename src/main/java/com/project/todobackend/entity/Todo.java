@@ -19,7 +19,7 @@ public class Todo extends BaseEntity {
     @Size(max = 1000, message = "Todo text must be less than 1000 characters")
     private String text;
 
-    private boolean isCompleted = false;
+    private boolean completed = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

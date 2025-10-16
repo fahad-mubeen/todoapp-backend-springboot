@@ -50,7 +50,7 @@ public class TodoController {
         return ResponseEntity.ok(todo);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> deleteTodo(
             @PathVariable Long id,
             Authentication authentication

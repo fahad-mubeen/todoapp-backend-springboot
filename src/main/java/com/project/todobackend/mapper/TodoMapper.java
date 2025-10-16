@@ -8,7 +8,7 @@ public class TodoMapper {
         return TodoDTO.builder()
                 .id(todo.getId())
                 .text(todo.getText())
-                .isCompleted(todo.isCompleted())
+                .completed(todo.isCompleted())
                 .userId(todo.getUser().getId())
                 .build();
     }
@@ -16,7 +16,7 @@ public class TodoMapper {
     public static Todo toTodoEntity(TodoDTO todoDTO) {
         return Todo.builder()
                 .text(todoDTO.getText())
-                .isCompleted(todoDTO.isCompleted())
+                .completed(todoDTO.isCompleted())
                 .build();
     }
 }
