@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "users")
 public class User extends BaseEntity {
     @Column(nullable = false, unique = true)
     @NotBlank(message = "Username is required")
