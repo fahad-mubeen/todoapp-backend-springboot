@@ -16,7 +16,9 @@ public class GlobalCorsConfig {
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOriginPatterns(List.of(
-                "https://fahad-mubeen.github.io"
+                "https://fahad-mubeen.github.io",
+                "http://127.0.0.1:3000",
+                "http://localhost:3000"
         ));
         config.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
         config.setAllowedHeaders(List.of("*"));

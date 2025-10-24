@@ -1,5 +1,6 @@
 package com.project.todobackend.entity;
 
+import com.project.todobackend.enums.PriorityTag;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -18,6 +19,9 @@ public class Todo extends BaseEntity {
     private String text;
 
     private boolean completed = false;
+
+    @Enumerated(EnumType.STRING)
+    private PriorityTag priorityTag = PriorityTag.MEDIUM;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
